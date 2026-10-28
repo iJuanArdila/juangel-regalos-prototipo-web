@@ -1,0 +1,253 @@
+/* ===== MÓDULO DE CLIENTES ===== */
+
+.clients-module {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+}
+
+.clients-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 110px;
+    padding: 12px 16px;
+    background: #ffffff;
+    border: 1.5px solid var(--brown);
+    border-radius: 14px 17px 13px 16px;
+}
+
+.clients-total strong {
+    font-size: 27px;
+    color: var(--brown);
+}
+
+.clients-total span {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.clients-layout {
+    display: grid;
+    grid-template-columns: minmax(250px, 0.8fr) minmax(0, 1.7fr);
+    align-items: start;
+    gap: 18px;
+}
+
+.clients-form-panel,
+.clients-list-panel {
+    min-width: 0;
+    padding: 20px;
+    background: var(--surface);
+    border: 1.5px solid #d8c9bd;
+    border-radius: 16px 19px 15px 18px;
+    box-shadow: var(--shadow);
+}
+
+.clients-form-panel h4,
+.clients-list-panel h4 {
+    margin: 0 0 7px;
+    font-size: 17px;
+}
+
+.clients-help,
+.clients-list-heading p {
+    margin: 0 0 18px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+#client-form {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+#client-form label {
+    margin-top: 7px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brown);
+}
+
+#client-form input,
+#client-search {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 11px;
+    color: var(--brown);
+    background: #fffdfb;
+    border: 1px solid #d8c9bd;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 12px;
+}
+
+#client-form input:focus,
+#client-search:focus {
+    outline: 2px solid var(--lilac);
+    outline-offset: 1px;
+}
+
+.client-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.client-primary-btn,
+.client-secondary-btn,
+.client-action-btn {
+    padding: 9px 12px;
+    border: 1.5px solid var(--brown);
+    border-radius: 9px 11px 8px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.client-primary-btn {
+    color: var(--brown);
+    background: var(--yellow);
+}
+
+.client-secondary-btn {
+    color: var(--brown);
+    background: #ffffff;
+}
+
+.client-action-btn {
+    color: var(--brown);
+    background: #fce5eb;
+}
+
+.client-delete-btn {
+    background: #ffffff;
+}
+
+.client-primary-btn:hover,
+.client-secondary-btn:hover,
+.client-action-btn:hover {
+    transform: translateY(-1px);
+}
+
+.client-form-message {
+    min-height: 16px;
+    margin: 8px 0 0;
+    color: var(--brown);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.clients-list-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.clients-list-heading p {
+    margin-bottom: 0;
+}
+
+#client-search {
+    max-width: 240px;
+}
+
+.clients-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.clients-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    text-align: left;
+}
+
+.clients-table th,
+.clients-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eadfd7;
+    vertical-align: middle;
+}
+
+.clients-table th {
+    color: var(--brown);
+    background: #fff0f3;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.clients-table td {
+    overflow-wrap: anywhere;
+}
+
+.client-secondary {
+    display: block;
+    margin-top: 4px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+.client-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.client-no-results {
+    padding: 28px 12px !important;
+    color: var(--muted);
+    text-align: center;
+}
+
+@media (max-width: 1000px) {
+    .clients-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .clients-form-panel,
+    .clients-list-panel {
+        padding: 15px;
+    }
+
+    .clients-total {
+        min-width: 85px;
+        padding: 9px;
+    }
+
+    .clients-total strong {
+        font-size: 22px;
+    }
+
+    .clients-list-heading {
+        flex-direction: column;
+    }
+
+    #client-search {
+        max-width: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .client-primary-btn,
+    .client-secondary-btn,
+    .client-action-btn {
+        transition: none;
+    }
+}
+

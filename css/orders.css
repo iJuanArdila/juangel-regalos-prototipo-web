@@ -1,0 +1,341 @@
+/* ===== MÓDULO DE PEDIDOS ===== */
+
+.orders-module {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+}
+
+.orders-total {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 12px 16px;
+    background: #fff;
+    border: 1.5px solid var(--brown);
+    border-radius: 14px 17px 13px 16px;
+}
+
+.orders-total strong {
+    font-size: 27px;
+    color: var(--brown);
+}
+
+.orders-total span {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.orders-notice {
+    padding: 13px 16px;
+    background: #fff4d7;
+    border: 1px solid var(--brown);
+    border-radius: 10px 13px 9px 12px;
+    color: var(--brown);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.order-form-panel,
+.orders-list-panel {
+    min-width: 0;
+    padding: 21px;
+    background: var(--surface);
+    border: 1.5px solid #d8c9bd;
+    border-radius: 16px 19px 15px 18px;
+    box-shadow: var(--shadow);
+}
+
+.order-form-panel > h4,
+.orders-list-panel h4,
+.order-products-heading h4 {
+    margin: 0 0 7px;
+    color: var(--brown);
+    font-size: 17px;
+}
+
+.order-help,
+.order-products-heading p,
+.orders-list-heading p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.order-main-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+}
+
+.order-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.order-field label,
+.order-product-field label {
+    color: var(--brown);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.order-field input,
+.order-field select,
+.order-field textarea,
+.order-product-field input,
+.orders-filters input,
+.orders-filters select {
+    width: 100%;
+    min-width: 0;
+    padding: 10px 11px;
+    color: var(--brown);
+    background: #fffdfb;
+    border: 1px solid #d8c9bd;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 12px;
+}
+
+.order-field textarea {
+    resize: vertical;
+}
+
+.order-field input:focus,
+.order-field select:focus,
+.order-field textarea:focus,
+.order-product-field input:focus,
+.orders-filters input:focus,
+.orders-filters select:focus {
+    outline: 2px solid var(--lilac);
+    outline-offset: 1px;
+}
+
+.order-products-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 24px 0 13px;
+}
+
+#order-products-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-product-row {
+    display: grid;
+    grid-template-columns: minmax(150px, 1.5fr) minmax(75px, 0.55fr) minmax(120px, 0.9fr) 34px;
+    align-items: end;
+    gap: 10px;
+    padding: 13px;
+    background: #fff7f8;
+    border: 1px solid #ead4d8;
+    border-radius: 12px 15px 11px 14px;
+}
+
+.order-product-field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.order-remove-product {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 37px;
+    color: var(--brown);
+    background: #fff;
+    border: 1px solid #d8c9bd;
+    border-radius: 8px;
+    font-size: 23px;
+    cursor: pointer;
+}
+
+.order-remove-product:hover {
+    background: #f9c7d1;
+}
+
+.order-financial-fields {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+}
+
+.order-money {
+    display: flex;
+    align-items: center;
+    min-height: 38px;
+    padding: 9px 11px;
+    color: var(--brown);
+    background: #fff0f3;
+    border: 1px solid #ead4d8;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.order-form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 17px;
+}
+
+.order-primary-btn,
+.order-secondary-btn,
+.order-action-btn {
+    padding: 10px 13px;
+    color: var(--brown);
+    border: 1.5px solid var(--brown);
+    border-radius: 9px 11px 8px 10px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.order-primary-btn {
+    background: var(--yellow);
+}
+
+.order-secondary-btn,
+.order-action-btn {
+    background: #fff;
+}
+
+.order-primary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.order-message {
+    min-height: 16px;
+    margin: 10px 0 0;
+    color: var(--brown);
+    font-size: 12px;
+}
+
+.orders-list-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 17px;
+}
+
+.orders-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.orders-filters input {
+    max-width: 230px;
+}
+
+.orders-filters select {
+    max-width: 190px;
+}
+
+.orders-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 12px;
+}
+
+.orders-table th,
+.orders-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eadfd7;
+    vertical-align: middle;
+}
+
+.orders-table th {
+    color: var(--brown);
+    background: #fff0f3;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.orders-table td {
+    overflow-wrap: anywhere;
+}
+
+.order-secondary {
+    display: block;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.6;
+}
+
+.order-status-select {
+    max-width: 155px;
+    padding: 8px;
+    color: var(--brown);
+    background: #fff;
+    border: 1px solid #d8c9bd;
+    border-radius: 8px;
+    font-size: 11px;
+}
+
+.order-no-results {
+    padding: 28px 12px !important;
+    color: var(--muted);
+    text-align: center;
+}
+
+@media (max-width: 800px) {
+    .order-product-row {
+        grid-template-columns: minmax(0, 1fr) minmax(80px, 0.6fr);
+    }
+
+    .order-product-field:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .order-remove-product {
+        grid-column: 2;
+        justify-self: end;
+    }
+}
+
+@media (max-width: 600px) {
+    .order-form-panel,
+    .orders-list-panel {
+        padding: 15px;
+    }
+
+    .order-main-fields,
+    .order-financial-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .orders-filters,
+    .orders-filters input,
+    .orders-filters select {
+        width: 100%;
+        max-width: none;
+    }
+}
+
