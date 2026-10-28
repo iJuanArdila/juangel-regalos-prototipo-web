@@ -1,6 +1,7 @@
 import { createClientsModule } from "./clients.js";
 import { createInventoryModule } from "./inventory.js";
 import { createOrdersModule } from "./orders.js";
+import { createSalesModule } from "./sales.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const appContainer = document.querySelector(".app-container");
@@ -34,9 +35,24 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     ordersModule = createOrdersModule({
         moduleView,
-        getClients: clientsModule.getClients
+        getClients: clientsModule.getClients,
+        getOrderPaymentTotal: (orderId) =>
+            salesModule?.getOrderPaymentTotal(orderId) ?? 0
     });
-    const inventoryModule = createInventoryModule({ moduleView });
+    let salesModule;
+    const inventoryModule = createInventoryModule({
+        moduleView,
+        hasActiveSaleForProduct: (productId) =>
+            salesModule?.hasActiveSaleForProduct(productId) ?? false
+    });
+    salesModule = createSalesModule({
+        moduleView,
+        getClients: clientsModule.getClients,
+        getOrders: ordersModule.getOrders,
+        setOrderStatus: ordersModule.setOrderStatus,
+        getInventory: inventoryModule.getInventory,
+        adjustStock: inventoryModule.adjustStock
+    });
 
     const placeholderContent = (
         kicker,
@@ -81,30 +97,16 @@ document.addEventListener("DOMContentLoaded", () => {
             render: inventoryModule.render
         },
         ventas: {
-            title: "Gestión de ventas",
-            description: "Consulta y organiza las ventas registradas.",
+            title: "Ventas, pagos y finanzas",
+            description: "Registra ventas, consulta saldos y controla los movimientos financieros.",
             breadcrumb: "Menú principal / Ventas",
-            content: placeholderContent(
-                "MOVIMIENTOS COMERCIALES",
-                "Ventas",
-                "Consulta las ventas y su relación con los pedidos.",
-                "$",
-                "Registro de ventas",
-                "La consulta de ventas y el registro de pagos se desarrollarán en una etapa posterior."
-            )
+            render: salesModule.render
         },
         gastos: {
-            title: "Gestión de gastos",
-            description: "Organiza los gastos del negocio.",
+            title: "Gastos y compras",
+            description: "Registra gastos, clasifica movimientos y controla las compras de insumos.",
             breadcrumb: "Menú principal / Gastos",
-            content: placeholderContent(
-                "CONTROL FINANCIERO",
-                "Gastos",
-                "Centraliza los gastos para facilitar el seguimiento financiero del emprendimiento.",
-                "$",
-                "Registro de gastos",
-                "Más adelante añadiremos el formulario, las categorías y la consulta de gastos registrados."
-            )
+            render: salesModule.render
         },
         reportes: {
             title: "Reportes e indicadores",

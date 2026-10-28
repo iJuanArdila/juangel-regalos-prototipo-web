@@ -1,6 +1,6 @@
 import { createCollectionStore, createId, escapeHTML, formatCOP } from "./shared.js";
 
-export function createInventoryModule({ moduleView }) {
+export function createInventoryModule({ moduleView, hasActiveSaleForProduct }) {
     const store = createCollectionStore(
         "juangel_regalos_inventario",
         "No se pudo cargar el inventario:",
@@ -321,6 +321,10 @@ export function createInventoryModule({ moduleView }) {
     function deleteInventoryProduct(productId) {
         const product = inventory.find((item) => item.id === productId);
         if (!product) return;
+        if (hasActiveSaleForProduct(productId)) {
+            alert("No se puede eliminar: el producto tiene ventas activas asociadas.");
+            return;
+        }
 
         const confirmed = confirm(
             `¿Eliminar "${product.name}" del inventario?`
@@ -338,6 +342,42 @@ export function createInventoryModule({ moduleView }) {
 
         editingProductId = null;
         renderInventory();
+    }
+
+    function adjustStock(items, direction) {
+        if (![1, -1].includes(direction)) return false;
+        if (items.some(({ productId, quantity }) =>
+            !inventory.some((product) => product.id === productId) ||
+            !Number.isInteger(quantity) ||
+            quantity < 1
+        )) return false;
+
+        const quantities = new Map();
+
+        items.forEach(({ productId, quantity }) => {
+            quantities.set(
+                productId,
+                (quantities.get(productId) || 0) + quantity * direction
+            );
+        });
+
+        const updatedInventory = inventory.map((product) => {
+            const change = quantities.get(product.id) || 0;
+            return { ...product, stock: product.stock + change };
+        });
+
+        const hasInvalidStock = updatedInventory.some(
+            (product) =>
+                !Number.isInteger(product.stock) ||
+                product.stock < 0 ||
+                product.stock > 1000000
+        );
+
+        if (hasInvalidStock) return false;
+        if (!store.save(updatedInventory)) return false;
+
+        inventory = updatedInventory;
+        return true;
     }
 
     moduleView.addEventListener("submit", (event) => {
@@ -466,6 +506,8 @@ export function createInventoryModule({ moduleView }) {
 
     return {
         render: renderInventory,
+        getInventory: () => inventory.map((product) => ({ ...product })),
+        adjustStock,
         clearEditing: () => { editingProductId = null; }
     };
 }

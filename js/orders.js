@@ -1,6 +1,10 @@
 import { createCollectionStore, createId, escapeHTML, formatCOP } from "./shared.js";
 
-export function createOrdersModule({ moduleView, getClients }) {
+export function createOrdersModule({
+    moduleView,
+    getClients,
+    getOrderPaymentTotal = () => 0
+}) {
     const store = createCollectionStore(
         "juangel_regalos_pedidos",
         "No se pudieron cargar los pedidos:",
@@ -105,7 +109,7 @@ export function createOrdersModule({ moduleView, getClients }) {
         return filteredOrders.length
             ? filteredOrders.map((order) => {
                 const total = getOrderTotal(order);
-                const balance = total - order.advance;
+                const balance = total - order.advance - getOrderPaymentTotal(order.id);
 
                 const productSummary = order.products.map((product) =>
                     `${product.quantity} × ${escapeHTML(product.name)}`
@@ -384,6 +388,23 @@ export function createOrdersModule({ moduleView, getClients }) {
         if (element) element.textContent = message;
     }
 
+    function setOrderStatus(orderId, status) {
+        if (!ORDER_STATUSES.includes(status)) return false;
+        if (!orders.some((order) => order.id === orderId)) return false;
+
+        const previousOrders = orders;
+        orders = orders.map((order) =>
+            order.id === orderId
+                ? { ...order, status, updatedAt: new Date().toISOString() }
+                : order
+        );
+
+        if (saveOrders()) return true;
+
+        orders = previousOrders;
+        return false;
+    }
+
     function resetOrderForm() {
         editingOrderId = null;
         renderOrders();
@@ -660,6 +681,7 @@ export function createOrdersModule({ moduleView, getClients }) {
     return {
         render: renderOrders,
         getOrders: () => orders,
+        setOrderStatus,
         clearEditing: () => { editingOrderId = null; }
     };
 }
