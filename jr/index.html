@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Panel administrativo de Juangel Regalos"
+    >
+
+    <title>Juangel Regalos | Panel administrativo</title>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <script src="/js/app.js" defer></script>
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Navegación lateral -->
+        <aside class="sidebar" id="sidebar">
+            <button
+     class="sidebar-toggle"
+    id="sidebar-toggle"
+    type="button"
+    aria-label="Plegar menú lateral"
+    aria-expanded="true"
+    aria-controls="sidebar"
+>
+    <span aria-hidden="true">⇤</span>
+</button>
+            <div class="brand">
+                <h1>Juangel Regalos</h1>
+                <p>Administración</p>
+            </div>
+
+                
+<nav class="navigation">
+    <p class="navigation-title">MENÚ PRINCIPAL</p>
+
+    <a href="#dashboard" class="nav-link active" data-page="dashboard">
+        Dashboard
+    </a>
+    <a href="#pedidos" class="nav-link" data-page="pedidos">
+        Pedidos
+    </a>
+    <a href="#clientes" class="nav-link" data-page="clientes">
+        Clientes
+    </a>
+    <a href="#inventario" class="nav-link" data-page="inventario">
+        Inventario
+    </a>
+    <a href="#ventas" class="nav-link" data-page="ventas">
+        Ventas
+    </a>
+    <a href="#gastos" class="nav-link" data-page="gastos">
+        Gastos
+    </a>
+    <a href="#reportes" class="nav-link" data-page="reportes">
+        Reportes
+    </a>
+
+    <p class="navigation-title">CONFIGURACIÓN</p>
+
+    <a href="#usuarios" class="nav-link" data-page="usuarios">
+        Usuarios
+    </a>
+</nav>
+
+            <div class="sidebar-footer">
+                <p>Sistema administrativo</p>
+                <small>Juangel Regalos</small>
+            </div>
+        </aside>
+
+       
+<main class="main-content">
+
+    <!-- Encabezado de la página -->
+    <header class="topbar">
+        <div class="page-heading">
+            <p class="breadcrumb">Inicio / Panel de control</p>
+            <h2>Tu espacio creativo</h2>
+            <p class="page-description">
+                Todo lo que necesitas para organizar tus regalos y pedidos.
+            </p>
+        </div>
+
+        <div class="user-info">
+            <div class="user-avatar">A</div>
+            <div>
+                <p class="user-name">Administrador</p>
+                <small>Gestión del negocio</small>
+            </div>
+        </div>
+    </header>
+        
+    <!-- Aquí se mostrarán los módulos seleccionados -->
+    <section
+        id="module-view"
+        class="module-view"
+        aria-live="polite"
+        hidden
+         >
+    </section>
+
+
+    <!-- Bienvenida destacada -->
+    <section class="welcome-card">
+        
+        <div class="welcome-content">
+            <span class="eyebrow">JUANGEL REGALOS</span>
+            <h3>¡Hagamos que hoy sea especial!</h3>
+            <p>
+                Organiza tus pedidos, prepara las entregas
+                y mantén cada detalle bajo control.
+            </p>
+
+            <a href="#pedidos-prioritarios" class="hand-button">
+                Revisar pendientes
+                <span aria-hidden="true">↗</span>
+            </a>
+        </div>
+
+        <div class="welcome-art" aria-hidden="true">
+            <span class="doodle doodle-star">✳</span>
+            <span class="doodle doodle-spark">✦</span>
+
+            <svg viewBox="0 0 220 190" role="img"
+                 xmlns="http://www.w3.org/2000/svg">
+                <g stroke="#402919" stroke-width="3.5"
+                   stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Sombra -->
+                    <path d="M39 157 Q110 177 181 154"
+                          fill="none" stroke-width="2.5"
+                          stroke-dasharray="3 7"/>
+
+                    <!-- Cuerpo del regalo -->
+                    <path d="M51 84 L166 84 L159 153
+                             Q109 162 58 153 Z"
+                          fill="#facf6c"/>
+
+                    <!-- Tapa -->
+                    <path d="M43 70 Q107 64 175 71
+                             L171 92 Q106 98 47 91 Z"
+                          fill="#f9c7d1"/>
+
+                    <!-- Cinta vertical -->
+                    <path d="M101 73 L103 157
+                             L119 156 L118 73 Z"
+                          fill="#c08cf9"/>
+
+                    <!-- Lazo -->
+                    <path d="M108 71
+                             C73 68 66 45 81 39
+                             C96 34 109 55 110 70
+                             C113 49 136 33 148 44
+                             C160 57 137 72 110 74"
+                          fill="#6de2d4"/>
+
+                    <!-- Detalle decorativo -->
+                    <path d="M66 112 L77 112 M65 120 L74 120"
+                          fill="none" stroke-width="2"/>
+                </g>
+            </svg>
+
+            <span class="doodle doodle-dot">•</span>
+        </div>
+    </section>
+
+    <!-- Indicadores compactos -->
+    <section class="dashboard-section" aria-labelledby="overview-title">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">VISTA RÁPIDA</span>
+                <h3 id="overview-title">Así va tu negocio</h3>
+            </div>
+            <span class="hand-note">Un vistazo general</span>
+        </div>
+
+        <div class="stats-grid">
+            <article class="stat-card stat-pink">
+                <div class="stat-topline">
+                    <span class="stat-label">Pedidos pendientes</span>
+                    <span class="stat-icon" aria-hidden="true">○</span>
+                </div>
+                <p class="stat-value">12</p>
+                <p class="stat-detail">Por revisar o preparar</p>
+            </article>
+
+            <article class="stat-card stat-yellow">
+                <div class="stat-topline">
+                    <span class="stat-label">Ventas del mes</span>
+                    <span class="stat-icon" aria-hidden="true">$</span>
+                </div>
+                <p class="stat-value">$1.250.000</p>
+                <p class="stat-detail">Valor de ejemplo</p>
+            </article>
+
+            <article class="stat-card stat-turquoise">
+                <div class="stat-topline">
+                    <span class="stat-label">Entregas de hoy</span>
+                    <span class="stat-icon" aria-hidden="true">✓</span>
+                </div>
+                <p class="stat-value">3</p>
+                <p class="stat-detail">Revisa sus horarios</p>
+            </article>
+
+            <article class="stat-card stat-lilac">
+                <div class="stat-topline">
+                    <span class="stat-label">Stock por revisar</span>
+                    <span class="stat-icon" aria-hidden="true">!</span>
+                </div>
+                <p class="stat-value">4</p>
+                <p class="stat-detail">Productos con existencias bajas</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Zona operativa -->
+    <section class="dashboard-workspace">
+
+        <!-- Pendientes prioritarios -->
+        <article class="paper-panel priority-panel"
+                 id="pedidos-prioritarios">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">PRIMERO LO PRIMERO</span>
+                    <h3>Necesitan tu atención</h3>
+                </div>
+                <span class="heading-doodle" aria-hidden="true">✳</span>
+            </div>
+
+            <p class="panel-description">
+                Pedidos de ejemplo que conviene revisar pronto.
+            </p>
+
+            <div class="priority-list">
+                <div class="priority-item">
+                    <span class="priority-marker marker-pink"
+                          aria-hidden="true"></span>
+                    <div class="priority-info">
+                        <strong>#PED-014 · Caja sorpresa</strong>
+                        <p>María López · Entrega hoy</p>
+                    </div>
+                    <span class="status status-pending">Pendiente</span>
+                </div>
+
+                <div class="priority-item">
+                    <span class="priority-marker marker-yellow"
+                          aria-hidden="true"></span>
+                    <div class="priority-info">
+                        <strong>#PED-018 · Desayuno sorpresa</strong>
+                        <p>Laura Gómez · Confirmar detalles</p>
+                    </div>
+                    <span class="status status-review">Por revisar</span>
+                </div>
+
+                <div class="priority-item">
+                    <span class="priority-marker marker-lilac"
+                          aria-hidden="true"></span>
+                    <div class="priority-info">
+                        <strong>#PED-021 · Mug personalizado</strong>
+                        <p>Camila Ruiz · En preparación</p>
+                    </div>
+                    <span class="status status-progress">En proceso</span>
+                </div>
+            </div>
+
+            <a href="#pedidos" class="panel-link">
+                Ir a la gestión de pedidos →
+            </a>
+        </article>
+
+        <!-- Agenda -->
+        <article class="paper-panel agenda-panel">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">ORGANIZA TU DÍA</span>
+                    <h3>Próximas entregas</h3>
+                </div>
+                <span class="heading-doodle" aria-hidden="true">✎</span>
+            </div>
+
+            <p class="panel-description">
+                Fechas y horarios para tener presentes.
+            </p>
+
+            <div class="agenda-list">
+                <div class="agenda-item">
+                    <div class="agenda-date">
+                        <span>OCT</span>
+                        <strong>13</strong>
+                    </div>
+                    <div class="agenda-info">
+                        <strong>Caja de cumpleaños</strong>
+                        <p>10:00 a. m. · María López</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-date agenda-date-yellow">
+                        <span>OCT</span>
+                        <strong>13</strong>
+                    </div>
+                    <div class="agenda-info">
+                        <strong>Desayuno sorpresa</strong>
+                        <p>2:00 p. m. · Laura Gómez</p>
+                    </div>
+                </div>
+
+                <div class="agenda-item">
+                    <div class="agenda-date agenda-date-lilac">
+                        <span>OCT</span>
+                        <strong>14</strong>
+                    </div>
+                    <div class="agenda-info">
+                        <strong>Mug personalizado</strong>
+                        <p>11:30 a. m. · Camila Ruiz</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#pedidos" class="panel-link">
+                Consultar todos los pedidos →
+            </a>
+        </article>
+    </section>
+
+    <!-- Resumen financiero -->
+    <section class="dashboard-section finance-section">
+        <div class="section-heading">
+            <div>
+                <span class="section-kicker">CONTROL DEL NEGOCIO</span>
+                <h3>Movimiento del mes</h3>
+            </div>
+            <span class="hand-note">Cifras ilustrativas</span>
+        </div>
+
+        <div class="finance-card">
+            <div class="finance-item">
+                <span>Ventas registradas</span>
+                <strong>$1.250.000</strong>
+            </div>
+
+            <div class="finance-divider"></div>
+
+            <div class="finance-item">
+                <span>Gastos registrados</span>
+                <strong>$320.000</strong>
+            </div>
+
+            <div class="finance-divider"></div>
+
+            <div class="finance-item finance-result">
+                <span>Diferencia ventas − gastos</span>
+                <strong>$930.000</strong>
+            </div>
+        </div>
+
+        <p class="finance-disclaimer">
+            Esta diferencia no equivale necesariamente a la utilidad:
+            no contempla costos de productos, pedidos pendientes de pago
+            ni otros movimientos no registrados.
+        </p>
+    </section>
+
+</main>
+
+    </div>
+</body>
+</html>
